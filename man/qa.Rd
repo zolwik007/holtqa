@@ -22,13 +22,17 @@ Istotność parametrów modelu: Istotne jeśli pvalue<0.05
 Jak nieistotne to nie interesuje nas ocena parametru
 \itemize{
 \item Współczynnik regresji
-Ujemny współczynnik regresji sugeruje, że wartości zależna maleją w miarę wzrostu wartości niezależna.
-Taki trend może wskazywać na zbieżność do pewnego poziomu równowagi w długim okresie (konwergencję).
+Ujemny współczynnik regresji sugeruje, że wartości
+zależna maleją w miarę wzrostu wartości niezależna.
+Taki trend może wskazywać na zbieżność
+do pewnego poziomu równowagi w długim okresie (konwergencję).
 \item Współczynnik zbieżności
-X100 to średni procent odległości pokonywanej w ciągu roku, dodatni to jest konwergencja,
-Ujemny to dywergencja (rozbieżność).
+X100 to średni procent odległości pokonywanej w ciągu roku,
+dodatni to jest konwergencja,
+Ujemny to dywergencja (rozbieżność)
 \item Współczynnik połowicznej zbieżności
-Ile jednostek czasu potrzeba żeby dystans między obiektami zmniejszył się o połowę.
+Ile jednostek czasu potrzeba żeby dystans
+do punktu równowagi zmniejszył się o połowę.
 }
 
 ------Drzewa-------
@@ -36,55 +40,117 @@ Czytając drzewo w konsoli:
 \enumerate{
 \item Ile jest obserwacji.
 \item Proporcje \% grupy.
-Każde piętro w poszczególnych linijkach używaj i i lub. Po gałęziach dajemy i.
-Lewa gałąź: warunek prawdziwy (spełniony).
-Prawa gałąź: warunek fałszywy (niespełniony).
+Każde piętro w poszczególnych linijkach używaj i i lub.
+Po gałęziach dajemy i.
+}
+
+--Lewa gałąź: warunek prawdziwy (spełniony).
+-Prawa gałąź: warunek fałszywy (niespełniony).
+\enumerate{
+\item Attr35>=-0.085132 1092 132 NB (0,87912088 0,12087912)
+Liczba obserwacji: 1092
+Przewidywana klasa: NB
+Rozkład: ~88\% NB, ~12\% B
 }
 \itemize{
-\item Skuteczność
-Skuteczność 0,96 to znaczy, że taki odsetek bankrutów i nie bankrutów ze zbioru uczącego zostało poprawnie zakwalifikowane przez model.
-\item Czułość
-Czułość 0,8 to znaczy, że 80\% bankrutów (prawa kolumna) ze zbioru uczącego zostało prawidłowo zakwalifikowanych.
-\item Specyficzność
-Specyficzność 1, 100\% niebankrutów (lewa kolumna) ze zbioru uczącego zostało poprawnie zakwalifikowanych.
-Jak zbiór uczący ma w tych parametrach same 1, to może być przeuczony.
+\item Skuteczność -
+Skuteczność 0,96 to znaczy, że taki odsetek
+bankrutów i nie bankrutów ze zbioru uczącego
+zostało poprawnie zakwalifikowane przez model.
+\item Czułość -
+Czułość 0,8 to znaczy, że 80\% bankrutów (prawa kolumna)
+ze zbioru uczącego zostało prawidłowo zakwalifikowanych.
+-jaki odsetek RZECZYWISTYCH POZYTYWNYCH przypadków
+został POPRAWNIE sklasyfikowany
+\item Specyficzność -
+Specyficzność 1, 100\% niebankrutów (lewa kolumna)
+ze zbioru uczącego zostało poprawnie zakwalifikowanych.
+-jaki odsetek RZECZYWISTYCH NEGATYWNYCH przypadków
+został POPRAWNIE rozpoznany.
 \item Confusion Matrix
-Prawy górny- błąd 1 typ, Lewy dolny- błąd 2 typ.
+Prawy górny- błąd 1 typ (B jako NB)  FN
+Lewy dolny- błąd 2 typ. (NB jako B)  FP
 }
 
 ---Las losowy----
-Ogólny wskaźnik błędu OOB (3,33\%) sugeruje, że model działa bardzo dobrze, skutecznie klasyfikując większość przypadków.
+Ogólny wskaźnik błędu OOB (3,33\%) sugeruje, że model działa bardzo dobrze,
+skutecznie klasyfikując większość przypadków.
 \itemize{
 \item Confusion matrix
+class.error (pomnóż x100) ile \% zmiennych z kat model klasyfikuje błędnie.
+\item MeanDecreaseAccuracy----
+•	Im wyższa wartość Mean Decrease Accuracy,
+tym większy wpływ danej zmiennej na predykcję modelu.
 }
 
-class.error (pomnóż x100) ile \% zmiennych z kat model klasyfikuje błędnie.
+Wartość na osi X oznacza średni spadek dokładności modelu
+po losowym przetasowaniu wartości danej cechy.
+Wyższe wartości oznaczają, że dana cecha ma większe znaczenie dla dokładności modelu,
+ponieważ jej przetasowanie znacząco obniża jakość klasyfikacji.
 \itemize{
-\item MeanDecreaseAccuracy
-Wartość na osi X oznacza średni spadek dokładności modelu po losowym przetasowaniu wartości danej cechy.
-Wyższe wartości oznaczają, że dana cecha ma większe znaczenie dla dokładności modelu, ponieważ jej przetasowanie znacząco obniża jakość klasyfikacji.
-\item MeanDecreaseGini
-Wartość na osi X oznacza średni spadek indeksu Gini (Mean Decrease Gini), czyli miarę zmniejszenia nieczystości (impurity) w podziałach drzew decyzyjnych, wynikającą z użycia danej cechy.
+\item MeanDecreaseGini----
+Wartość na osi X oznacza średni spadek indeksu Gini (Mean Decrease Gini),
+czyli miarę zmniejszenia nieczystości (impurity) w podziałach drzew decyzyjnych,
+wynikającą z użycia danej cechy.
 Wyższe wartości oznaczają, że cecha ma większy wpływ na budowę modelu i klasyfikację.
 Atrybuty z najwyższymi wartościami na osi X mają największy wpływ na jakość podziałów w modelu.
 }
 
 Na przykład:
-Attr39, Attr35 - te cechy znacząco przyczyniają się do zmniejszenia indeksu Gini i są najważniejsze dla modelu.
+Attr39, Attr35 - te cechy znacząco przyczyniają się do zmniejszenia indeksu Gini
+i są najważniejsze dla modelu.
 \itemize{
-\item Boosting
+\item Grupowania-------
 }
 
+Liczba punktów danych w klastrach:
+Cluster 1: 104 obserwacje
+Cluster 2: 138 obserwacji
+
+Centroidy klastrów:
+Każdy wiersz w tabeli oznacza wartości średnie dla cech w danym klastrze.
+
+Cluster 1: Ma wartości bliskie 0.85–0.90 we wszystkich latach.
+Cluster 2: Ma wartości ujemne, około -0.64 do -0.67.
+To oznacza, że Cluster 1 zawiera obiekty o wyższych wartościach dla tych zmiennych,
+a Cluster 2 obiekty o niższych wartościach.
+\itemize{
+\item Wskaźnik jakości klasteryzacji---
+Within-cluster sum of squares (WSS) –
+suma kwadratów odległości punktów od centroidów klastrów:
+Cluster 1: 1183.6051
+Cluster 2: 596.0379
+Im niższa ta wartość, tym bardziej kompaktowy jest klaster
+(mniej rozproszony).
+}
+
+Between_SS / Total_SS = 59\%
+Oznacza, że 59\% wariancji w danych jest wyjaśnione przez podział na klastry.
+
+---Holt-winters------
+
+alfa– określa wpływ nowych danych na poziom szeregu;
+wysoka wartość oznacza szybszą adaptację.
+
+beta– kontroluje tempo zmian trendu;
+wyższa wartość pozwala na szybszą aktualizację.
+
+gamma– odpowiada za sezonowość;
+duża wartość oznacza szybkie dostosowanie cyklu sezonowego.
+
+phi– tłumi trend; jeśli jest mniejsze niż 1, trend stopniowo zanika.
+
+False (trend nie wygasa), True (trend wygasa).
+
+-- Boosting-
 Na początku (pierwsze iteracje), błąd klasyfikacji wynosi około 6,67\%.
 Z każdą kolejną iteracją model coraz lepiej dostosowuje się do danych.
 Iteracja 10: 3,33\%, Iteracja 20: 0,79\%, Iteracja 30: 0,00\%.
-\itemize{
-\item Bagging
+
+--Bagging-
 Szacowany wskaźnik błędu klasyfikacji (OOB) wynosi 0,0342.
-Oznacza to, że około 3,42\% przypadków zostało błędnie sklasyfikowanych na podstawie próbek niewykorzystanych podczas trenowania (out-of-bag).
-\item Holt-winters
-False (trend nie wygasa), True (trend wygasa).
-}
+Oznacza to, że około 3,42\% przypadków zostało błędnie sklasyfikowanych
+na podstawie próbek niewykorzystanych podczas trenowania (out-of-bag).
 }
 \examples{
 dummy_function(3)  # Returns 9
